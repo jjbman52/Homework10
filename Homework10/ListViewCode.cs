@@ -71,18 +71,20 @@ namespace Homework10
             layout.Padding = new Thickness(15, 0);
             Label label = new Label();
 
-            label.SetBinding(Label.TextProperty, ".");
-            layout.Children.Add(label);
-
             var moreAction = new MenuItem { Text = "More" };
             moreAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
             moreAction.Clicked += OnMore;
+
+            this.ContextActions.Add(moreAction);
+
+            label.SetBinding(Label.TextProperty, ".");
+            layout.Children.Add(label);
 
             var deleteAction = new MenuItem { Text = "Delete", IsDestructive = true }; // red background
             deleteAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
             deleteAction.Clicked += OnDelete;
 
-            this.ContextActions.Add(moreAction);
+            
             this.ContextActions.Add(deleteAction);
             View = layout;
         }
